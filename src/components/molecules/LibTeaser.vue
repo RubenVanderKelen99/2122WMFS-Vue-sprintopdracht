@@ -1,10 +1,19 @@
 <template>
   <div class="teaser">
     <h3>{{ work.title }}</h3>
-    <h4 v-for="a in work.authors" :key=a.key>{{ a.name }}</h4>
-    <li v-for="s in work.subject.slice(3)" :key="s.value">
-      <LibButton :subject="w">{{ s.value }}</LibButton>
-    </li>
+    <div class="authors">
+      <h4 v-for="a in work.authors" :key="a.key">{{ a.name }}</h4>
+    </div>
+    <div class="subjects">
+      <LibButton
+        v-for="s in work.subject.slice(0, 3)"
+        :key="s"
+        :subject="s"
+        @click="$emit('subjectSelected', s)"
+      >
+        {{ s }}
+      </LibButton>
+    </div>
   </div>
 </template>
 
@@ -31,8 +40,16 @@ export default {
     margin-bottom: 1rem;
   }
 
+  .authors {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
+
   .subjects {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 0.5em;
   }

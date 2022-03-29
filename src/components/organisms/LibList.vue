@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li v-for="w in works" :key="w.key">
-      <LibTeaser :work="w"/>
+      <LibTeaser :work="w" @subjectSelected="subjectSelected" />
     </li>
   </ul>
 </template>
@@ -14,6 +14,12 @@ export default {
     works: {
       type: Array,
       required: true,
+    },
+  },
+  emits: ["subjectSelected"],
+  methods: {
+    subjectSelected(subject) {
+      this.$emit("subjectSelected", `${subject}`);
     },
   },
 };

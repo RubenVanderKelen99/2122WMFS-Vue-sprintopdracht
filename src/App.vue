@@ -23,7 +23,7 @@ export default {
     },
     urlDetail() {
       let url = "";
-      url += "https://openlibrary.org/";
+      url += "https://openlibrary.org";
       url += this.key;
       url += ".json";
       return encodeURI(url);
@@ -73,12 +73,15 @@ export default {
   <main>
     <div>
       <h2 class="visually-hidden">Results</h2>
-      <LibList />
+      <LibList v-if="works?.length > 0" :works="works" />
+      <p v-else-if="error" class="error">
+        Geen resultaten gevonden...<br />(● ︵ ●)
+      </p>
     </div>
     <div class="detail">
       <LibDetail />
     </div>
-    <div class="loading">...loading</div>
+    <div v-if="loading" class="loading">...loading</div>
   </main>
 </template>
 

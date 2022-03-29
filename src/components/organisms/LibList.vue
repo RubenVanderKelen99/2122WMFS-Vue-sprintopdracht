@@ -1,10 +1,7 @@
 <template>
   <ul>
     <li v-for="w in works" :key="w.key">
-      <LibTeaser
-        :class="{ selected: onselect(self) }"
-        :event="w.fields"
-      ></LibTeaser>
+      <LibTeaser :work="w"/>
     </li>
   </ul>
 </template>
